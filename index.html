@@ -124,42 +124,7 @@
         </div>
       </section>
 
-      <dialog class="profile-dialog" id="profile-dialog" aria-labelledby="dialog-title">
-        <form id="profile-form">
-          <div class="dialog-heading">
-            <div><span class="intro-kicker"><span class="tiny-star">✳</span> CLASS OF 2010 DIRECTORY</span><h2 id="dialog-title">Update a <em>profile.</em></h2></div>
-            <button class="dialog-close" type="button" aria-label="Close profile editor">×</button>
-          </div>
-          <p class="dialog-description">Add accurate details so classmates can find and reconnect with each other. Contact details and profile links are visible to anyone viewing this directory.</p>
-          <input id="profile-id" type="hidden" />
-          <label class="form-field">Full name<input id="profile-name" name="name" type="text" maxlength="80" required placeholder="Enter full name" /></label>
-          <div class="form-two-col">
-            <label class="form-field">Location<input id="profile-location" name="location" type="text" maxlength="100" placeholder="City, country" /></label>
-            <label class="form-field">Occupation<input id="profile-occupation" name="occupation" type="text" maxlength="100" placeholder="What do you do?" /></label>
-          </div>
-          <label class="form-field">Phone number<input id="profile-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="Include country code, e.g. +234..." /></label>
-          <div class="social-fields-heading"><strong>Social media &amp; website</strong><span>Enter a profile link or username.</span></div>
-          <div class="form-two-col social-fields">
-            <label class="form-field">Facebook<input data-social="facebook" type="text" maxlength="160" placeholder="Profile link or username" /></label>
-            <label class="form-field">Instagram<input data-social="instagram" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
-            <label class="form-field">LinkedIn<input data-social="linkedin" type="text" maxlength="160" placeholder="Profile link or username" /></label>
-            <label class="form-field">X (Twitter)<input data-social="x" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
-            <label class="form-field">TikTok<input data-social="tiktok" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
-            <label class="form-field">WhatsApp<input data-social="whatsapp" type="text" maxlength="160" placeholder="Number with country code or link" /></label>
-            <label class="form-field">YouTube<input data-social="youtube" type="text" maxlength="160" placeholder="Channel link or @handle" /></label>
-            <label class="form-field">Snapchat<input data-social="snapchat" type="text" maxlength="160" placeholder="Profile link or username" /></label>
-            <label class="form-field">Threads<input data-social="threads" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
-            <label class="form-field">Website / other profile<input data-social="website" type="text" maxlength="200" placeholder="https://..." /></label>
-          </div>
-          <label class="form-field">Profile photo<input id="profile-photo" name="photo" type="file" accept="image/*" /><span class="field-hint">Choose a photo from your device. It will be resized before saving.</span></label>
-          <div class="upload-preview" id="upload-preview" hidden><img id="preview-image" alt="Selected profile photo preview" /><button class="remove-photo" id="remove-photo" type="button">Remove photo</button></div>
-          <p class="form-error" id="form-error" role="alert" hidden></p>
-          <div class="dialog-actions"><button class="button button-light cancel-edit" type="button">Cancel</button><button class="button button-dark save-profile" type="submit">Save profile <span aria-hidden="true">↗</span></button></div>
-        </form>
-      </dialog>
-
       <section class="reconnect section-wrap">
-        <div class="reconnect-star" aria-hidden="true">✳</div>
         <div>
           <span class="eyebrow eyebrow-dark">HELP US BRING EVERYONE BACK</span>
           <h2>Know a classmate<br />we’re <em>missing?</em></h2>

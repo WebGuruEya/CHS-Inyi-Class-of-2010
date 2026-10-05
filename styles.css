@@ -166,7 +166,6 @@ h1, h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -.045em; }
 .cancel-edit { border: 1px solid #d9dbd3; }
 .save-profile { margin-top: 0; }
 .reconnect { position: relative; min-height: 330px; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding-top: 72px; padding-bottom: 72px; }
-.reconnect-star { position: absolute; top: 70px; right: 25%; color: #e5ddce; font-size: 70px; }
 .eyebrow-dark { color: #718073; }
 .reconnect h2 { margin-top: 16px; font-size: clamp(41px, 4vw, 50px); }
 .reconnect h2 em { color: #a57b4b; }
@@ -199,6 +198,8 @@ html[data-theme="dark"] .theme-toggle { border-color: #405044; background: #202c
 html[data-theme="dark"] .theme-toggle:hover { border-color: #71885d; background: #29382c; }
 html[data-theme="dark"] .nav-cta { border-color: #45564a; color: #d8efb5; }
 html[data-theme="dark"] .nav-cta:hover { background: #314532; }
+html[data-theme="dark"] .hero .button-light { background: #f8f8f4; color: #173f32; }
+html[data-theme="dark"] .hero .button-light:hover { background: #c5ef73; color: #172720; }
 html[data-theme="dark"] .intro { color: #e6ece5; }
 html[data-theme="dark"] .intro-kicker { color: #a7b7a7; }
 html[data-theme="dark"] .intro h2 em, html[data-theme="dark"] .directory h2 em, html[data-theme="dark"] .reconnect h2 em { color: #c5ef73; }
@@ -335,7 +336,6 @@ html[data-theme="dark"] .main-nav.is-open { background: #151e18; }
   .edit-profile { padding: 8px; }
   .member-badge { top: 7px; right: 7px; padding: 5px 6px; font-size: 7px; }
   .reconnect { align-items: flex-start; flex-direction: column; gap: 20px; padding-top: 64px; padding-bottom: 65px; }
-  .reconnect-star { top: 52px; right: 8%; font-size: 52px; }
   .reconnect h2 { font-size: 43px; }
   .button-dark { margin-top: 0; }
   .site-footer { min-height: 115px; flex-wrap: wrap; gap: 15px; padding: 18px 7%; }
@@ -457,7 +457,6 @@ body { color: #172720; background: #f8f8f4; -webkit-font-smoothing: antialiased;
 .dialog-actions { position: sticky; bottom: -1px; margin-right: -1px; margin-left: -1px; padding: 16px 1px 1px; background: linear-gradient(0deg, var(--cream) 80%, rgba(248,248,244,0)); }
 .cancel-edit { border-radius: 999px; }
 .reconnect { min-height: 365px; gap: 50px; padding-top: 88px; padding-bottom: 88px; }
-.reconnect-star { top: 78px; right: 24%; color: #e4ebdc; }
 .reconnect h2 { margin-top: 18px; font-size: clamp(45px, 4.7vw, 60px); }
 .reconnect h2 em { color: #547d50; }
 .reconnect p { max-width: 475px; font-size: 13px; line-height: 1.8; }

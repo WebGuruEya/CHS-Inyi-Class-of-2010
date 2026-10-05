@@ -30,7 +30,7 @@ const members = [
 
 const STORAGE_KEY = 'chs-inyi-class-2010-directory-v1';
 const THEME_STORAGE_KEY = 'chs-inyi-color-mode';
-const MAX_PHOTO_BYTES = 450_000;
+const PROFILE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeWDMdLtFTWmKZMx_S7IczFYcCSVOVd7h8ZLLC_dRiPuoaKkQ/viewform?usp=header';
 const SOCIAL_PROFILES = {
   facebook: { label: 'Facebook', short: 'f', base: 'https://facebook.com/' },
   instagram: { label: 'Instagram', short: 'ig', base: 'https://instagram.com/' },
@@ -43,8 +43,6 @@ const SOCIAL_PROFILES = {
   threads: { label: 'Threads', short: 'th', base: 'https://threads.net/@' },
   website: { label: 'Website / other', short: '↗' },
 };
-let pendingPhoto = '';
-
 function getInitialTheme() {
   try {
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
@@ -86,12 +84,6 @@ const searchInput = document.querySelector('#search-input');
 const resultsCount = document.querySelector('#results-count');
 const emptyState = document.querySelector('#empty-state');
 const filterButtons = [...document.querySelectorAll('.filter-button')];
-const profileDialog = document.querySelector('#profile-dialog');
-const profileForm = document.querySelector('#profile-form');
-const photoInput = document.querySelector('#profile-photo');
-const uploadPreview = document.querySelector('#upload-preview');
-const previewImage = document.querySelector('#preview-image');
-const formError = document.querySelector('#form-error');
 let activeFilter = 'all';
 
 function createMemberCard(member, index) {
@@ -141,10 +133,11 @@ function createMemberCard(member, index) {
   meta.append(createMeta('⌖', member.location || 'Location to be added'));
   meta.append(createMeta('↗', member.occupation || 'Occupation to be added'));
   info.append(number, name, meta, createContactLinks(member));
-  const editButton = document.createElement('button');
+  const editButton = document.createElement('a');
   editButton.className = 'edit-profile';
-  editButton.type = 'button';
-  editButton.dataset.editIndex = String(index);
+  editButton.href = PROFILE_FORM_URL;
+  editButton.target = '_blank';
+  editButton.rel = 'noopener noreferrer';
   editButton.innerHTML = 'Edit profile <span aria-hidden="true">↗</span>';
   info.append(editButton);
   card.append(photoWrap, info);
@@ -270,146 +263,9 @@ function renderMembers() {
   updateResults();
 }
 
-function openProfileEditor(index) {
-  const member = members[index];
-  if (!member) return;
-  profileForm.reset();
-  document.querySelector('#profile-id').value = String(index);
-  document.querySelector('#profile-name').value = member.name.startsWith('Classmate ') ? '' : member.name;
-  document.querySelector('#profile-location').value = member.location || '';
-  document.querySelector('#profile-occupation').value = member.occupation || '';
-  document.querySelector('#profile-phone').value = member.phone || '';
-  document.querySelectorAll('[data-social]').forEach((field) => {
-    field.value = member.socials?.[field.dataset.social] || '';
-  });
-  pendingPhoto = member.photoData || (member.image ? `Img/${encodeURIComponent(member.image)}` : '');
-  if (pendingPhoto) {
-    previewImage.src = pendingPhoto;
-    uploadPreview.hidden = false;
-  } else {
-    uploadPreview.hidden = true;
-    previewImage.removeAttribute('src');
-  }
-  formError.hidden = true;
-  profileDialog.showModal();
-}
-
 function persistMembers() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
 }
-
-function prepareProfilePhoto(file) {
-  return new Promise((resolve, reject) => {
-    if (!file || !file.type.startsWith('image/')) {
-      reject(new Error('Choose a valid image file.'));
-      return;
-    }
-    const reader = new FileReader();
-    reader.onerror = () => reject(new Error('The selected image could not be read.'));
-    reader.onload = () => {
-      const image = new Image();
-      image.onerror = () => reject(new Error('The selected image could not be opened.'));
-      image.onload = () => {
-        const maxSide = 800;
-        const ratio = Math.min(1, maxSide / Math.max(image.naturalWidth, image.naturalHeight));
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, Math.round(image.naturalWidth * ratio));
-        canvas.height = Math.max(1, Math.round(image.naturalHeight * ratio));
-        canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
-        let quality = 0.84;
-        let result = canvas.toDataURL('image/jpeg', quality);
-        while (result.length * 0.75 > MAX_PHOTO_BYTES && quality > 0.4) {
-          quality -= 0.1;
-          result = canvas.toDataURL('image/jpeg', quality);
-        }
-        if (result.length * 0.75 > MAX_PHOTO_BYTES) {
-          reject(new Error('This photo is too large. Please choose a smaller image.'));
-          return;
-        }
-        resolve(result);
-      };
-      image.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-grid.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-edit-index]');
-  if (button) openProfileEditor(Number(button.dataset.editIndex));
-});
-
-photoInput.addEventListener('change', async () => {
-  const file = photoInput.files[0];
-  if (!file) return;
-  formError.hidden = true;
-  try {
-    pendingPhoto = await prepareProfilePhoto(file);
-    previewImage.src = pendingPhoto;
-    uploadPreview.hidden = false;
-  } catch (error) {
-    formError.textContent = error.message;
-    formError.hidden = false;
-    photoInput.value = '';
-  }
-});
-
-document.querySelector('#remove-photo').addEventListener('click', () => {
-  pendingPhoto = '';
-  photoInput.value = '';
-  previewImage.removeAttribute('src');
-  uploadPreview.hidden = true;
-});
-
-function closeProfileEditor() {
-  profileDialog.close();
-}
-document.querySelector('.dialog-close').addEventListener('click', closeProfileEditor);
-document.querySelector('.cancel-edit').addEventListener('click', closeProfileEditor);
-
-profileForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const index = Number(document.querySelector('#profile-id').value);
-  const phone = document.querySelector('#profile-phone').value.trim();
-  if (phone && phone.replace(/\D/g, '').length < 7) {
-    formError.textContent = 'Enter a valid phone number with at least 7 digits.';
-    formError.hidden = false;
-    return;
-  }
-  const socials = {};
-  for (const field of document.querySelectorAll('[data-social]')) {
-    const platform = field.dataset.social;
-    const value = field.value.trim();
-    if (value && !getSocialHref(platform, value)) {
-      formError.textContent = `Enter a valid ${SOCIAL_PROFILES[platform].label} username or profile URL.`;
-      formError.hidden = false;
-      field.focus();
-      return;
-    }
-    if (value) socials[platform] = value;
-  }
-  formError.hidden = true;
-  const previous = { ...members[index] };
-  members[index] = {
-    ...members[index],
-    name: document.querySelector('#profile-name').value.trim(),
-    location: document.querySelector('#profile-location').value.trim(),
-    occupation: document.querySelector('#profile-occupation').value.trim(),
-    phone,
-    socials,
-    photoData: pendingPhoto.startsWith('data:image/') ? pendingPhoto : '',
-    image: pendingPhoto.startsWith('data:image/') ? '' : (pendingPhoto.startsWith('Img/') ? members[index].image || '' : ''),
-  };
-  try {
-    persistMembers();
-    renderMembers();
-    closeProfileEditor();
-  } catch (error) {
-    members[index] = previous;
-    formError.textContent = 'Could not save changes in this browser. Try a smaller photo or clear some browser storage.';
-    formError.hidden = false;
-  }
-});
 
 document.querySelector('#export-updates').addEventListener('click', () => {
   const blob = new Blob([JSON.stringify({ version: 1, members }, null, 2)], { type: 'application/json' });
