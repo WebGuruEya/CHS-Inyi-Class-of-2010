@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173f32" />
+    <meta
+      name="description"
+      content="Reconnect with the Comprehensive High School Inyi Class of 2010. Meet our classmates, revisit the memories, and help complete our alumni directory."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CHS Inyi Class of 2010 | Still Connected" />
+    <meta
+      property="og:description"
+      content="One school. One class. A lifetime of memories. Reconnect with the Comprehensive High School Inyi Class of 2010."
+    />
+    <meta property="og:image" content="Img/1%20(1).jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="Img/1%20(1).jpg" />
+    <title>CHS Inyi Class of 2010 — Still Connected</title>
+    <link rel="icon" href="Img/Comprehensive%20High%20School%20Class%20of%202010%20Crest.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="CHS Inyi Class of 2010 home">
+        <img class="brand-mark" src="Img/Comprehensive%20High%20School%20Class%20of%202010%20Crest.png" alt="Comprehensive High School Inyi Class of 2010 crest" />
+        <span class="brand-copy">
+          <strong>Comprehensive High School</strong>
+          <span>Inyi · Class of 2010</span>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#story">Our story</a>
+        <a href="#classmates">Classmates</a>
+        <a class="nav-cta" href="#classmates">Find your people <span aria-hidden="true">↗</span></a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+      </button>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <img class="hero-photo" src="Img/1%20(1).jpg" alt="Comprehensive High School Inyi classmates together in a school group photograph" />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <span class="eyebrow"><span class="eyebrow-line"></span> INYI · NIGERIA · EST. 2010</span>
+          <h1 id="hero-title">The years move on.<br /><em>Our bond stays.</em></h1>
+          <p>From the same classrooms to a thousand different paths — we’ll always be the class of 2010.</p>
+          <a class="button button-light" href="#classmates">Meet the class <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-note"><span class="note-star">✳</span><span>One school.<br />One unforgettable class.</span></div>
+        <div class="hero-index"><span>01</span><span class="index-rule"></span><span>CLASS OF 2010</span></div>
+      </section>
+
+      <section class="intro section-wrap" id="story">
+        <div class="intro-kicker"><span class="tiny-star">✳</span> STILL PART OF THE STORY</div>
+        <div class="intro-main">
+          <h2>We came from<br />the same <em>place.</em></h2>
+          <div class="intro-copy">
+            <p>We shared the lessons, the laughter, and the little moments that became lifelong memories. Now, wherever life has taken us, this is our place to find each other again.</p>
+            <a class="text-link" href="#classmates">Explore the class directory <span aria-hidden="true">↘</span></a>
+          </div>
+        </div>
+        <div class="stats-row" aria-label="Class directory statistics">
+          <div class="stat"><strong>2010</strong><span>Our graduating year</span></div>
+          <div class="stat"><strong id="member-count">27</strong><span>Classmates, one family</span></div>
+          <div class="stat"><strong id="photo-count">16</strong><span>Faces back in the frame</span></div>
+          <div class="stat stat-note"><span>Different journeys.<br /><em>One shared beginning.</em></span><span class="stat-star">✳</span></div>
+        </div>
+      </section>
+
+      <section class="directory" id="classmates">
+        <div class="section-wrap directory-inner">
+          <div class="directory-heading">
+            <div>
+              <div class="intro-kicker"><span class="tiny-star">✳</span> THE PEOPLE WHO MAKE IT HOME</div>
+              <h2>Meet your <em>classmates.</em></h2>
+            </div>
+            <p class="directory-description">Find a familiar face, catch up, and help us fill in the blanks. This directory is ours to build together.</p>
+          </div>
+
+          <div class="directory-tools">
+            <label class="search-box">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="search-input" type="search" placeholder="Search classmates..." autocomplete="off" aria-label="Search classmates" />
+              <kbd>↵</kbd>
+            </label>
+            <div class="filter-group" role="group" aria-label="Filter classmates">
+              <button class="filter-button is-active" type="button" data-filter="all">Everyone <span>27</span></button>
+              <button class="filter-button" type="button" data-filter="photo">With photos <span>16</span></button>
+              <button class="filter-button" type="button" data-filter="needed">Photo needed <span>11</span></button>
+            </div>
+          </div>
+
+          <div class="directory-sharing">
+            <div class="sharing-note"><span class="sharing-icon">✳</span><span><strong>Help keep the directory up to date.</strong> Edit a profile or upload a photo. Changes are saved in this browser; use Export / Import to pass them along.</span></div>
+            <div class="sharing-actions">
+              <button class="small-action" id="export-updates" type="button">Export updates <span aria-hidden="true">↓</span></button>
+              <button class="small-action" id="import-updates" type="button">Import updates <span aria-hidden="true">↑</span></button>
+              <input id="import-file" type="file" accept="application/json,.json" hidden />
+            </div>
+          </div>
+
+          <div class="results-line"><span id="results-count">27 classmates</span><span>CLASS OF 2010 <span class="tiny-star">✳</span> INYI</span></div>
+          <div class="member-grid" id="member-grid" aria-live="polite"></div>
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-icon">⌕</span>
+            <h3>No classmates found</h3>
+            <p>Try another name or clear your search.</p>
+            <button class="text-link clear-search" type="button">Clear search <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+      </section>
+
+      <dialog class="profile-dialog" id="profile-dialog" aria-labelledby="dialog-title">
+        <form id="profile-form">
+          <div class="dialog-heading">
+            <div><span class="intro-kicker"><span class="tiny-star">✳</span> CLASS OF 2010 DIRECTORY</span><h2 id="dialog-title">Update a <em>profile.</em></h2></div>
+            <button class="dialog-close" type="button" aria-label="Close profile editor">×</button>
+          </div>
+          <p class="dialog-description">Add accurate details so classmates can find and reconnect with each other. Contact details and profile links are visible to anyone viewing this directory.</p>
+          <input id="profile-id" type="hidden" />
+          <label class="form-field">Full name<input id="profile-name" name="name" type="text" maxlength="80" required placeholder="Enter full name" /></label>
+          <div class="form-two-col">
+            <label class="form-field">Location<input id="profile-location" name="location" type="text" maxlength="100" placeholder="City, country" /></label>
+            <label class="form-field">Occupation<input id="profile-occupation" name="occupation" type="text" maxlength="100" placeholder="What do you do?" /></label>
+          </div>
+          <label class="form-field">Phone number<input id="profile-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="Include country code, e.g. +234..." /></label>
+          <div class="social-fields-heading"><strong>Social media &amp; website</strong><span>Enter a profile link or username.</span></div>
+          <div class="form-two-col social-fields">
+            <label class="form-field">Facebook<input data-social="facebook" type="text" maxlength="160" placeholder="Profile link or username" /></label>
+            <label class="form-field">Instagram<input data-social="instagram" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
+            <label class="form-field">LinkedIn<input data-social="linkedin" type="text" maxlength="160" placeholder="Profile link or username" /></label>
+            <label class="form-field">X (Twitter)<input data-social="x" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
+            <label class="form-field">TikTok<input data-social="tiktok" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
+            <label class="form-field">WhatsApp<input data-social="whatsapp" type="text" maxlength="160" placeholder="Number with country code or link" /></label>
+            <label class="form-field">YouTube<input data-social="youtube" type="text" maxlength="160" placeholder="Channel link or @handle" /></label>
+            <label class="form-field">Snapchat<input data-social="snapchat" type="text" maxlength="160" placeholder="Profile link or username" /></label>
+            <label class="form-field">Threads<input data-social="threads" type="text" maxlength="160" placeholder="Profile link or @username" /></label>
+            <label class="form-field">Website / other profile<input data-social="website" type="text" maxlength="200" placeholder="https://..." /></label>
+          </div>
+          <label class="form-field">Profile photo<input id="profile-photo" name="photo" type="file" accept="image/*" /><span class="field-hint">Choose a photo from your device. It will be resized before saving.</span></label>
+          <div class="upload-preview" id="upload-preview" hidden><img id="preview-image" alt="Selected profile photo preview" /><button class="remove-photo" id="remove-photo" type="button">Remove photo</button></div>
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <div class="dialog-actions"><button class="button button-light cancel-edit" type="button">Cancel</button><button class="button button-dark save-profile" type="submit">Save profile <span aria-hidden="true">↗</span></button></div>
+        </form>
+      </dialog>
+
+      <section class="reconnect section-wrap">
+        <div class="reconnect-star" aria-hidden="true">✳</div>
+        <div>
+          <span class="eyebrow eyebrow-dark">HELP US BRING EVERYONE BACK</span>
+          <h2>Know a classmate<br />we’re <em>missing?</em></h2>
+          <p>Let’s make this directory feel like our class again. Share their name, photo, location, and what they’re up to.</p>
+        </div>
+        <a class="button button-dark" href="#classmates">Help complete the directory <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#home">
+        <img class="brand-mark" src="Img/Comprehensive%20High%20School%20Class%20of%202010%20Crest.png" alt="Comprehensive High School Inyi Class of 2010 crest" />
+        <span class="brand-copy"><strong>Comprehensive High School</strong><span>Inyi · Class of 2010</span></span>
+      </a>
+      <span class="footer-message">Made with memories <span class="tiny-star">✳</span> Always connected</span>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
