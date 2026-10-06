@@ -24,7 +24,7 @@ const members = [
   { name: 'Onoja Malachi' },
   { name: 'Mama Dorathy' },
   { name: 'Domnic Martina' },
-  { name: 'Classmate 26' },
+  { name: 'Malachi Nduka', image: '1 (26).jpg' },
   { name: 'Classmate 27' },
 ];
 
@@ -78,6 +78,35 @@ function loadSavedMembers() {
 }
 
 loadSavedMembers();
+
+const rosterUpdates = {
+  'Eya Michael': {
+    location: 'Abuja',
+    occupation: 'Photographer/Digital Lead',
+    phone: '07066069899',
+    socials: {
+      instagram: 'Eya Michael Okechukwu',
+      facebook: 'Eya Michael Okechukwu',
+      tiktok: 'Eya Michael Okechukwu',
+      whatsapp: '07066069899',
+    },
+  },
+  'Malachi Nduka': {
+    location: 'Anambra State',
+    occupation: 'Automobile Diagnostics and Repair',
+  },
+};
+
+members.forEach((member, index) => {
+  const update = rosterUpdates[member.name];
+  if (update) {
+    members[index] = {
+      ...member,
+      ...update,
+      socials: { ...member.socials, ...update.socials },
+    };
+  }
+});
 
 const grid = document.querySelector('#member-grid');
 const searchInput = document.querySelector('#search-input');
@@ -174,8 +203,9 @@ function getSocialHref(platform, value) {
       if (!/^[\w-]+(?:\.[\w-]+)+(?:[/:?#].*)?$/i.test(raw)) return '';
       url = new URL(`https://${raw}`);
     } else if (platform === 'whatsapp') {
-      const digits = raw.replace(/\D/g, '');
+      let digits = raw.replace(/\D/g, '');
       if (digits.length < 7) return '';
+      if (digits.length === 11 && digits.startsWith('0')) digits = `234${digits.slice(1)}`;
       url = new URL(`${entry.base}${digits}`);
     } else {
       const handle = raw.replace(/^@/, '').replace(/^\/+|\/+$/g, '');
